@@ -23,7 +23,7 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-  type = string
+  type    = string
   default = "P@$$w0rd!2024"
 }
 

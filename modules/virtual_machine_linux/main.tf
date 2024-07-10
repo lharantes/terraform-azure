@@ -45,9 +45,9 @@ resource "tls_private_key" "linux_key" {
 }
 
 resource "local_file" "linuxkey" {
-  count           = var.generate_admin_ssh_key ? 1 : 0
-  filename        = "linuxkey.pem"
-  content         = tls_private_key.linux_key[count.index].private_key_pem
+  count    = var.generate_admin_ssh_key ? 1 : 0
+  filename = "linuxkey.pem"
+  content  = tls_private_key.linux_key[count.index].private_key_pem
   #file_permission = "0400"
 }
 
@@ -59,7 +59,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   size                            = var.vm_size
   admin_username                  = var.admin_username
   disable_password_authentication = var.disable_password_authentication
-  admin_password = var.admin_password
+  admin_password                  = var.admin_password
 
   dynamic "admin_ssh_key" {
     for_each = var.generate_admin_ssh_key ? ["this"] : []
